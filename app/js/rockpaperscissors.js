@@ -46,8 +46,29 @@ function getComputerMove(move) {
 }
 
 function getWinner(playerMove,computerMove) {
+   
     var winner;
-    // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
+
+	if (playerMove == computerMove) {
+		winner = 'tie';
+	} else if (playerMove == 'rock' && computerMove == 'paper') {
+		winner = 'computer';
+	} else if (playerMove == 'scissors' && computerMove == 'rock') {
+		winner = 'computer';
+	} else if (playerMove == 'paper' && computerMove == 'rock') {
+		winner = 'player';
+	} else if (playerMove == 'paper' && computerMove == 'scissors') {
+		winner = 'computer';
+	} else if (playerMove == 'rock' && computerMove == 'scissors') {
+		winner = 'computer';
+	} else if (playerMove == 'scissors' && computerMove == 'paper') {
+		winner = 'player';
+	}
+	
+    
+    
+
+   // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
     /* YOUR CODE HERE */
@@ -60,6 +81,26 @@ function playToFive() {
     var computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     /* YOUR CODE HERE */
-    return [playerWins, computerWins];
+  while (playerWins < 5  && computerWins < 5) {
+  	playerMove = getPlayerMove();
+  	computerMove = getComputerMove();
+  	winner = GetWiner (playerMove, computerMove);
+
+  }
+
+  if (winner === "player") {
+  	console.log("player chose " + playerMove + " and computer chose " + computerMove + ". Player Wins this round.");
+  		playerWIns++;
+}
+else if (winner  === "computer") {
+console.log ("player chose " + playerMove + " and  computer chose " + computerMove + ". Comptuer wins this round.");
+computerWins++;
+}
+else if (winner === "tie") {
+	console.log ("this round was tie.");
 }
 
+  console.log("the score is now " + playerWins + " to " + computerWins + ".");
+}
+return [playerWins, computerWins];
+}
